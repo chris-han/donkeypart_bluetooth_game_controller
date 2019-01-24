@@ -94,7 +94,8 @@ class BluetoothGameController(BluetoothDevice):
         }
 
     def _get_default_config_path(self):
-        return os.path.join(os.path.dirname(__file__), 'wiiu_config.yml')
+        #return os.path.join(os.path.dirname(__file__), 'wiiu_config.yml')
+        return os.path.join(os.path.dirname(__file__), 'xbox1s_config.yml')
 
     def _load_config(self, config_path):
         with open(config_path, 'r') as f:
