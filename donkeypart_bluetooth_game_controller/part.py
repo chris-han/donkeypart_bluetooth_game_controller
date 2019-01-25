@@ -13,8 +13,7 @@ class BluetoothDevice:
     def get_input_device(self, path):
         return evdev.InputDevice(path)
 
-    #defaul to my xbox controller
-    def find_input_device(self, search_term='xbox'):
+    def find_input_device(self, search_term):
         """
         Return the input device if there is only one that matches the search term.
         """
@@ -109,12 +108,14 @@ class BluetoothGameController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
-            print (event)
+            print ("{} and {}".format("event.type: ", event.type))
+            if event.type == ecodes.EV_KEY:
+                print ("{} and {}".format("this EV_KEY: ", event.code))
+
             btn = self.btn_map.get(event.code)
-            #val = event.value
-            val = event.code #capture button mapping for xbox
-            #if event.type == ecodes.EV_ABS:
-            #    val = val / float(self.joystick_max_value)
+            val = event.value
+            if event.type == ecodes.EV_ABS:
+                val = val / float(self.joystick_max_value)
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
