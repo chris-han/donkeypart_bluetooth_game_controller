@@ -235,8 +235,8 @@ class BluetoothGameController(BluetoothDevice):
 if __name__ == "__main__":
     device_search_term = input("""Please give a string that can identify the bluetooth device (ie. nintendo)""")
     if device_search_term == "":
-        print('No search term given. Using Xbox.')
-        device_search_term = "Xbox"
+        print('No search term given. Using xbox.')
+        device_search_term = "xbox"
 
     parser = argparse.ArgumentParser(description='Scripts to help test and setup your controller.')
     parser.add_argument('command', metavar='command', type=str, help='log or profile')
