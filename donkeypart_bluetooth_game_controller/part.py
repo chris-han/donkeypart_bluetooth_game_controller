@@ -92,8 +92,8 @@ class BluetoothGameController(BluetoothDevice):
             'PAD_UP': self.increment_throttle_scale,
             'PAD_DOWN': self.decrement_throttle_scale,
             #for xbox controller
-            'RB': self.increment_throttle_scale, 
-            'LB': self.decrement_throttle_scale,
+            'RT': self.increment_throttle_scale, 
+            'LT': self.decrement_throttle_scale,
         }
 
     def _get_default_config_path(self):
@@ -126,7 +126,7 @@ class BluetoothGameController(BluetoothDevice):
                     btn="X"
                 elif event.value == 589829:
                     btn="Y"
-                print ("{} : {}".format("this EV_MSC: ", btn))
+                #print ("{} : {}".format("this EV_MSC: ", btn))
             else:
                 btn = self.btn_map.get(event.code)
             val = event.value
@@ -235,8 +235,8 @@ class BluetoothGameController(BluetoothDevice):
 if __name__ == "__main__":
     device_search_term = input("""Please give a string that can identify the bluetooth device (ie. nintendo)""")
     if device_search_term == "":
-        print('No search term given. Using Nintendo.')
-        device_search_term = "Nintendo"
+        print('No search term given. Using Xbox.')
+        device_search_term = "Xbox"
 
     parser = argparse.ArgumentParser(description='Scripts to help test and setup your controller.')
     parser.add_argument('command', metavar='command', type=str, help='log or profile')
