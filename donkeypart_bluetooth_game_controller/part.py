@@ -91,6 +91,9 @@ class BluetoothGameController(BluetoothDevice):
             'A': self.toggle_drive_mode,
             'PAD_UP': self.increment_throttle_scale,
             'PAD_DOWN': self.decrement_throttle_scale,
+            #for xbox controller
+            'RB': self.increment_throttle_scale, 
+            'LB': self.decrement_throttle_scale,
         }
 
     def _get_default_config_path(self):
@@ -108,11 +111,24 @@ class BluetoothGameController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
-            print ("{} : {}".format("event.type", event.type))
+            #print ("{} : {}".format("event.type", event.type))
+            #events from xbox controller keys are under EV_MSC
             if event.type == ecodes.EV_MSC:
-                print ("{} : {}".format("this EV_MSC: ", event.code))
-
-            btn = self.btn_map.get(event.code)
+                if event.value == 589831:
+                    btn="LB"
+                elif event.value == 589832:
+                    btn="RB"
+                elif event.value == 589825:
+                    btn="A"
+                elif event.value == 589826:
+                    btn="B"
+                elif event.value == 589828:
+                    btn="X"
+                elif event.value == 589829:
+                    btn="Y"
+                print ("{} : {}".format("this EV_MSC: ", btn))
+            else:
+                btn = self.btn_map.get(event.code)
             val = event.value
             if event.type == ecodes.EV_ABS:
                 val = val / float(self.joystick_max_value)
