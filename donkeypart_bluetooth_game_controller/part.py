@@ -13,7 +13,8 @@ class BluetoothDevice:
     def get_input_device(self, path):
         return evdev.InputDevice(path)
 
-    def find_input_device(self, search_term):
+    #defaul to my xbox controller
+    def find_input_device(self, search_term='xbox'):
         """
         Return the input device if there is only one that matches the search term.
         """
@@ -108,6 +109,7 @@ class BluetoothGameController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
+            print (event)
             btn = self.btn_map.get(event.code)
             #val = event.value
             val = event.code #capture button mapping for xbox
