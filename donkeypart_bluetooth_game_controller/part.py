@@ -108,9 +108,9 @@ class BluetoothGameController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
-            print ("{} and {}".format("event.type: ", event.type))
-            if event.type == ecodes.EV_KEY:
-                print ("{} and {}".format("this EV_KEY: ", event.code))
+            print ("{} : {}".format("event.type", event.type))
+            if event.type == ecodes.EV_MSC:
+                print ("{} : {}".format("this EV_MSC: ", event.code))
 
             btn = self.btn_map.get(event.code)
             val = event.value
