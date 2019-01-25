@@ -109,9 +109,10 @@ class BluetoothGameController(BluetoothDevice):
         try:
             event = next(self.device.read_loop())
             btn = self.btn_map.get(event.code)
-            val = event.value
-            if event.type == ecodes.EV_ABS:
-                val = val / float(self.joystick_max_value)
+            #val = event.value
+            val = event.code #capture button mapping for xbox
+            #if event.type == ecodes.EV_ABS:
+            #    val = val / float(self.joystick_max_value)
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
