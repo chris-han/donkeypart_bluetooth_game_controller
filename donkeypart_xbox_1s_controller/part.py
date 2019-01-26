@@ -113,7 +113,10 @@ class Xbox1sController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
-            active_button = self.device.active_keys()[0]            
+            active_button = None 
+            
+            if len(self.device.active_keys())>0:
+                active_button = self.device.active_keys()[0]            
 
             if self.verbose == True:
                 #print("event type: {} ;raw event: {}".format(event.type, event))   
@@ -127,27 +130,28 @@ class Xbox1sController(BluetoothDevice):
                 
 
             #events from xbox controller keys are under EV_MSC
-            if event.type == ecodes.EV_MSC:
-                if event.value == 589831:
-                    btn="LB"
-                elif event.value == 589832:
-                    btn="RB"
-                elif event.value == 589825:
-                    btn="A"
-                elif event.value == 589826:
-                    btn="B"
-                elif event.value == 589828:
-                    btn="X"
-                elif event.value == 589829:
-                    btn="Y"
-                elif event.value == 589836:
-                    btn="MENU"
-                elif event.value == 786979:
-                    btn="HOME"
-                elif event.value == 786980:
-                    btn="VIEW"
-                else:
-                    btn="OTHER_BUTTON"
+            if active_button != None: 
+                if event.type == ecodes.EV_MSC:
+                    if event.value == 589831:
+                        btn="LB"
+                    elif event.value == 589832:
+                        btn="RB"
+                    elif event.value == 589825:
+                        btn="A"
+                    elif event.value == 589826:
+                        btn="B"
+                    elif event.value == 589828:
+                        btn="X"
+                    elif event.value == 589829:
+                        btn="Y"
+                    elif event.value == 589836:
+                        btn="MENU"
+                    elif event.value == 786979:
+                        btn="HOME"
+                    elif event.value == 786980:
+                        btn="VIEW"
+                    else:
+                        btn="OTHER_BUTTON"
             elif event.type == ecodes.EV_ABS:                
                 if event.code==0:
                     btn="LS_X"
