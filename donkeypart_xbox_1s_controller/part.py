@@ -114,7 +114,8 @@ class Xbox1sController(BluetoothDevice):
             event = next(self.device.read_loop())
             if self.verbose == True:
                 print("event typ: {} ;raw event: {}".format(event.type, event))            
-            #print ("{} : {}".format("event.type", event.type))
+
+            val = event.value
             #events from xbox controller keys are under EV_MSC
             if event.type == ecodes.EV_MSC:
                 if event.value == 589831:
@@ -129,14 +130,47 @@ class Xbox1sController(BluetoothDevice):
                     btn="X"
                 elif event.value == 589829:
                     btn="Y"
+                elif event.value == 589836:
+                    btn="MENU"
+                elif event.value == 786979:
+                    btn="HOME"
+                elif event.value == 786980:
+                    btn="VIEW"
                 else:
                     btn="OTHER"
-                #print ("{} : {}".format("this EV_MSC: ", btn))
-            else:
-                btn = self.btn_map.get(event.code)
-            val = event.value
-            if event.type == ecodes.EV_ABS:
-                val = val / float(self.joystick_max_value)
+            elif event.type == ecodes.EV_ABS:                
+                if event.code==1:
+                    btn="LS_X"
+                    val = val / float(self.joystick_max_value)
+                elif event.code==0:
+                    btn="LS_Y"
+                    val = val / float(self.joystick_max_value)
+                elif event.code==4:
+                    btn="RS_X"
+                    val = val / float(self.joystick_max_value)
+                elif event.code==3:
+                    btn="RS_Y"
+                    val = val / float(self.joystick_max_value)
+                elif event.code==2:
+                    btn="LT"
+                    val = val / float(self.trigger_max_value)
+                elif event.code==5:
+                    btn="RT"
+                    val = val / float(self.trigger_max_value)
+                elif event.code==17:
+                    if event.value==-1:
+                        btn="PAD_UP"
+                    elif event.value==1: 
+                        btn="PAD_DOWN"                   
+                elif event.code==16:
+                    if event.value==-1:
+                        btn="PAD_LEFT"
+                    elif event.value==1: 
+                        btn="PAD_RIGHT"
+                                           
+            if self.verbose == True:
+                print("button: {} ".format(btn))  
+
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
