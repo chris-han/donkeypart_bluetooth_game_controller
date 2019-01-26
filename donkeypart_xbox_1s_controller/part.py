@@ -158,19 +158,18 @@ class Xbox1sController(BluetoothDevice):
                 elif event.code==5:
                     btn="RT"
                     val = val / float(self.trigger_max_value)
-                elif event.code==17:
-                    if event.value==-1:
-                        btn="PAD_UP"
-                    elif event.value==1: 
-                        btn="PAD_DOWN"                   
-                elif event.code==16:
-                    if event.value==-1:
-                        btn="PAD_LEFT"
-                    elif event.value==1: 
-                        btn="PAD_RIGHT"
                 else:
                     btn="OTHER_ANALOG"
-
+            elif event.code==17:
+                if event.value==-1:
+                    btn="PAD_UP"
+                elif event.value==1: 
+                    btn="PAD_DOWN"                   
+            elif event.code==16:
+                if event.value==-1:
+                    btn="PAD_LEFT"
+                elif event.value==1: 
+                    btn="PAD_RIGHT"
             if self.verbose == True:
                 print("button: {} ".format(btn))  
 
