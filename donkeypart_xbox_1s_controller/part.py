@@ -161,13 +161,17 @@ class Xbox1sController(BluetoothDevice):
                 elif event.code==17:
                     if event.value==-1:
                         btn="PAD_UP"
-                    else: #event.value==1: 
-                        btn="PAD_DOWN"                   
+                    elif event.value==1: 
+                        btn="PAD_DOWN"
+                    else:
+                        btn="PAD_CENTER" #==0                     
                 elif event.code==16:
                     if event.value==-1:
                         btn="PAD_LEFT"
-                    else: #event.value==1: 
+                    elif event.value==1: 
                         btn="PAD_RIGHT"
+                    else:
+                        btn="PAD_CENTER" #==0                        
                 else:
                     btn="OTHER_ANALOG"
 
