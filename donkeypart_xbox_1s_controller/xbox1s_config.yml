@@ -17,7 +17,7 @@ button_map:
 # 'PAD_UP': self.increment_throttle_scale,
 # 'PAD_DOWN': self.decrement_throttle_scale,
 
-joystic_max_value: 1280
+joystick_max_value: 32767
 
 
 

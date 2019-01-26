@@ -73,7 +73,7 @@ class Xbox1sController(BluetoothDevice):
         self.config = self._load_config(config_path)
 
         self.btn_map = self.config.get('button_map')
-        self.joystick_max_value = self.config.get('joystick_max_value', 1280)
+        self.joystick_max_value = self.config.get('joystick_max_value', 32767)
 
         # search term used to find the event stream input (/dev/input/...)
         self.device_search_term = device_search_term or self.config.get('device_search_term', 1280)
