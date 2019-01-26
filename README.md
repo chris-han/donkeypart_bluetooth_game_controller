@@ -1,6 +1,6 @@
 
 # Xbox 1s Controller
-This is a library to connect a [Xbox 1s wireless/bluetooth controller](https://compass-ssl.xbox.com/assets/29/03/290338f7-0d62-480b-8282-b62223319555.jpg?n=X1-Wireless-Controller-Blue_Hero-desktop_1920x540.jpg) to your donkeycar.
+This is a library to connect a [Xbox 1s wireless/bluetooth controller](https://www.xbox.com/en-US/xbox-one/accessories/controllers/blue-wireless-controller) to your donkeycar.
  
  >> See the bottom of the page for tested controllers and brands. Beware of knockoffs!
 
