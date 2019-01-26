@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 from evdev import *
 gamepad = InputDevice('/dev/input/js0')
 

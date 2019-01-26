@@ -4,7 +4,7 @@ import time
 from itertools import cycle
 import argparse
 import evdev
-from evdev import ecodes
+from evdev import ecodes, categorize
 import yaml
 
 class BluetoothDevice:
@@ -117,6 +117,11 @@ class Xbox1sController(BluetoothDevice):
                 print("event typ: {} ;raw event: {}".format(event.type, event))            
 
             val = event.value
+
+            if event.type == ecodes.EV_KEY:
+                print("key: {}; active keys: {}".format(categorize(event),self.device.active_keys()))  
+                
+
             #events from xbox controller keys are under EV_MSC
             if event.type == ecodes.EV_MSC:
                 if event.value == 589831:
@@ -175,9 +180,6 @@ class Xbox1sController(BluetoothDevice):
                 else:
                     btn="OTHER_ANALOG"
 
-            if self.verbose == True:
-                print("button: {} ".format(btn))  
-
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
@@ -196,9 +198,6 @@ class Xbox1sController(BluetoothDevice):
         func = self.func_map.get(btn)
         if func is not None:
             func(val)
-
-        #if self.verbose == True:
-        #    print("button: {}, value:{}".format(btn, val))
 
     def update(self):
         while True:
@@ -258,28 +257,24 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def toggle_recording(self, val):
-        #print("recording_toggle: %s" % val)
         if val == 589826:
             self.recording = next(self.recording_toggle)
-            print("recording_toggle: %s" % self.recording)
+            #print("recording_toggle: %s" % self.recording)
         return
 
     def toggle_drive_mode(self, val):
-        #print("drive_mode: %s" % val)
         if val == 589825:
             self.drive_mode = next(self.drive_mode_toggle)
-            print("drive_mode: %s" % self.drive_mode_toggle)
+            #print("drive_mode: %s" % self.drive_mode_toggle)
         return
 
     def increment_throttle_scale(self, val):
-        #print("increment_throttle_scale: %s" % val)
         if val >0.031:
             self.throttle_scale += self.throttle_scale_increment
             #print("increment_throttle_scale: %s" % self.throttle_scale_increment)
         return
 
     def decrement_throttle_scale(self, val):
-        #print("decrement_throttle_scale: %s" % val)
         if val >0.031:
             self.throttle_scale -= self.throttle_scale_increment
             #print("decrement_throttle_scale: %s" % self.throttle_scale_increment)
