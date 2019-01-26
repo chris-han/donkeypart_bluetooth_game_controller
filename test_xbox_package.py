@@ -1,4 +1,4 @@
-import donkeypart_bluetooth_game_controller as xbox
+import donkeypart_xbox_1s_controller as xbox
 from inspect import *
 
 def test_device_read_loop(input_device):
