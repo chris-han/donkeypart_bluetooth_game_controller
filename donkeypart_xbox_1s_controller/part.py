@@ -60,7 +60,7 @@ class Xbox1sController(BluetoothDevice):
 
         self.throttle_scale = 1.0
         self.throttle_scale_increment = .05
-        #self.y_axis_direction = -1  # pushing stick forward gives negative values
+        #self.y_axis_direction = 0  # change this by tigger L/R
 
         self.drive_mode_toggle = cycle(['user', 'local_angle', 'local'])
         self.drive_mode = next(self.drive_mode_toggle)
@@ -154,7 +154,7 @@ class Xbox1sController(BluetoothDevice):
                     val = val / float(self.joystick_max_value)
                 elif event.code==2:
                     btn="LT"
-                    val = val / float(self.trigger_max_value)
+                    val = val / float(self.trigger_max_value) * -1 #decrease value 
                 elif event.code==5:
                     btn="RT"
                     val = val / float(self.trigger_max_value)
@@ -254,7 +254,7 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def update_throttle(self, val):
-        self.throttle = val * self.throttle_scale# * self.y_axis_direction
+        self.throttle = val * self.throttle_scale #* self.y_axis_direction
         return
 
     def toggle_recording(self, val):
@@ -275,14 +275,14 @@ class Xbox1sController(BluetoothDevice):
         #print("increment_throttle_scale: %s" % val)
         if val >0.031:
             self.throttle_scale += self.throttle_scale_increment
-            print("increment_throttle_scale: %s" % self.throttle_scale_increment)
+            #print("increment_throttle_scale: %s" % self.throttle_scale_increment)
         return
 
     def decrement_throttle_scale(self, val):
         #print("decrement_throttle_scale: %s" % val)
         if val >0.031:
             self.throttle_scale -= self.throttle_scale_increment
-            print("decrement_throttle_scale: %s" % self.throttle_scale_increment)
+            #print("decrement_throttle_scale: %s" % self.throttle_scale_increment)
         return
 
 
