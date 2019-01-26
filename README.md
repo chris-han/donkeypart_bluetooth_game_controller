@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/autorope/donkeypart_bluetooth_game_controller.svg?branch=master)](https://travis-ci.org/autorope/donkeypart_bluetooth_game_controller)
 
-# Bluetooth Game Controller
-This is a library to connect a [Wii-U](https://www.amazon.com/gp/product/B01GJBUNTG/ref=as_li_ss_tl?ie=UTF8&psc=1&linkCode=ll1&tag=donkeycar-20&linkId=a7fc2ff3e6489b9e6dd267a7f8b2ff19&language=en_US)
- (and possibly others) bluetooth game controller to your donkeycar.
+# Xbox 1s Controller
+This is a library to connect a [Xbox 1s wireless/bluetooth controller](https://compass-ssl.xbox.com/assets/29/03/290338f7-0d62-480b-8282-b62223319555.jpg?n=X1-Wireless-Controller-Blue_Hero-desktop_1920x540.jpg) to your donkeycar.
  
  >> See the bottom of the page for tested controllers and brands. Beware of knockoffs!
 
@@ -11,8 +9,7 @@ This is a library to connect a [Wii-U](https://www.amazon.com/gp/product/B01GJBU
 ### Install
 Install the library.
 ```bash
-git clone https://github.com/autorope/donkeypart_bluetooth_game_controller.git
-pip install -e ./donkeypart_bluetooth_game_controller
+pip install https://github.com/chris-han/donkeypart_xbox_1s_controller.git
 ```
 
 

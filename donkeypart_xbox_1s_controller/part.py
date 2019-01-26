@@ -43,7 +43,7 @@ class BluetoothDevice:
         self.device = device
 
 
-class BluetoothGameController(BluetoothDevice):
+class Xbox1sController(BluetoothDevice):
     """
     Generator of cordinates of a bouncing moving square for simulations.
     """
@@ -244,8 +244,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args.command)
     if args.command == 'profile':
-        ctl = BluetoothGameController(device_search_term=device_search_term)
+        ctl = Xbox1sController(device_search_term=device_search_term)
         ctl.profile()
     elif args.command == 'log':
-        ctl = BluetoothGameController(verbose=True, device_search_term=device_search_term)
+        ctl = Xbox1sController(verbose=True, device_search_term=device_search_term)
         ctl.update()
