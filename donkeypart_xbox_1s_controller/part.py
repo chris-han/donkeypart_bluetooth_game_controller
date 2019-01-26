@@ -125,33 +125,31 @@ class Xbox1sController(BluetoothDevice):
             val = event.value
 
 
-            #if event.type == ecodes.EV_KEY:
-             
+            #if event.type == ecodes.EV_KEY:     
                 
 
             #events from xbox controller keys are under EV_MSC
             if active_button != None: 
-                if event.type == ecodes.EV_MSC:
-                    if event.value == 589831:
-                        btn="LB"
-                    elif event.value == 589832:
-                        btn="RB"
-                    elif event.value == 589825:
-                        btn="A"
-                    elif event.value == 589826:
-                        btn="B"
-                    elif event.value == 589828:
-                        btn="X"
-                    elif event.value == 589829:
-                        btn="Y"
-                    elif event.value == 589836:
-                        btn="MENU"
-                    elif event.value == 786979:
-                        btn="HOME"
-                    elif event.value == 786980:
-                        btn="VIEW"
-                    else:
-                        btn="OTHER_BUTTON"
+                if active_button == 317:
+                    btn="LB"
+                elif active_button == 318:
+                    btn="RB"
+                elif active_button == 304:
+                    btn="A"
+                elif active_button == 305:
+                    btn="B"
+                elif active_button == 307:
+                    btn="X"
+                elif active_button == 308:
+                    btn="Y"
+                elif active_button == 314:
+                    btn="SELECT"
+                elif active_button == 315:
+                    btn="START"
+                elif active_button == 316:
+                    btn="MODE"
+                else:
+                    btn="OTHER_BUTTON"
             elif event.type == ecodes.EV_ABS:                
                 if event.code==0:
                     btn="LS_X"
@@ -187,7 +185,8 @@ class Xbox1sController(BluetoothDevice):
                         btn="PAD_CENTER" #==0                        
                 else:
                     btn="OTHER_ANALOG"
-
+            else:
+                btn="UNKNOWN"
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
