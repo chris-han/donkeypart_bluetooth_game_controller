@@ -18,6 +18,7 @@ button_map:
 # 'PAD_DOWN': self.decrement_throttle_scale,
 
 joystick_max_value: 32767
+trigger_max_value: 1023
 
 
 

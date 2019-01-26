@@ -74,6 +74,7 @@ class Xbox1sController(BluetoothDevice):
 
         self.btn_map = self.config.get('button_map')
         self.joystick_max_value = self.config.get('joystick_max_value', 32767)
+        self.trigger_max_value = self.config.get('trigger_max_value', 1023)
 
         # search term used to find the event stream input (/dev/input/...)
         self.device_search_term = device_search_term or self.config.get('device_search_term', 1280)
@@ -112,7 +113,7 @@ class Xbox1sController(BluetoothDevice):
         try:
             event = next(self.device.read_loop())
             if self.verbose == True:
-                print("raw event: {}".format(event))            
+                print("event typ: {} ;raw event: {}".format(event.type, event))            
             #print ("{} : {}".format("event.type", event.type))
             #events from xbox controller keys are under EV_MSC
             if event.type == ecodes.EV_MSC:
@@ -128,6 +129,8 @@ class Xbox1sController(BluetoothDevice):
                     btn="X"
                 elif event.value == 589829:
                     btn="Y"
+                else:
+                    btn="OTHER"
                 #print ("{} : {}".format("this EV_MSC: ", btn))
             else:
                 btn = self.btn_map.get(event.code)
