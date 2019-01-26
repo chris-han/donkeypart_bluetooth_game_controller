@@ -281,8 +281,8 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def reset(self, val):
-        update_throttle(0)
-        update_angle(0)
+        self.update_throttle(0)
+        self.update_angle(0)
         return        
 
     def increment_throttle_scale(self, val):
