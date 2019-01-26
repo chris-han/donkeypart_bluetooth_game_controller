@@ -118,8 +118,8 @@ class Xbox1sController(BluetoothDevice):
 
             val = event.value
 
-            if event.type == ecodes.EV_KEY:
-                print("key: {}; active keys: {}".format(categorize(event),self.device.active_keys()))  
+            #if event.type == ecodes.EV_KEY:
+            print("key: {}; active keys: {}".format(categorize(event),self.device.active_keys()))  
                 
 
             #events from xbox controller keys are under EV_MSC
