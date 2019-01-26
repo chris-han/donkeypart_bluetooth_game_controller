@@ -8,6 +8,11 @@ This is a library to connect a [Xbox 1s wireless/bluetooth controller](https://w
 
 ### Install
 Install the library.
+xpadneo is THE working driver for xbox 1s controller. The one in core currently doesn't work out for me. So follow the instructions on github here:
+https://github.com/atar-axis/xpadneo
+
+If you have trouble to connect but able to pair, make sure restart the controller after pairing, then try to connect. 
+
 ```bash
 pip install https://github.com/chris-han/donkeypart_xbox_1s_controller.git
 ```
@@ -30,12 +35,14 @@ trust 8C:CD:E8:AB:32:DE
 ```
 4. Now your controller should show that your controller is connected - the 4 blinking lights turns to one solid light.
 
-5. Run the part script to see if it works. You should see all the button values printed as you press them. Like this.
+5. Run the part script to see if it works. You should see all the button values printed as you press them.
 ```bash
 python ./donkeypart_xbox_1s_controller/donkeypart_xbox_1s_controller/part.py log
 
+The mappings:
+
             'LS_X': self.update_angle,
-            'RT': self.update_throttle, 
+            'RT': self.update_throttle, #forward
             'LT': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
@@ -43,7 +50,7 @@ python ./donkeypart_xbox_1s_controller/donkeypart_xbox_1s_controller/part.py log
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
 
-6. Assuming you can see the button outputs, you can now plug this in as your donkeycar controller in
+6. You can now plug this in as your donkeycar controller in
 the manage.py (donkey2.py in the template fodler) script...
 ```python
 from donkeypart_xbox_1s_controller import Xbox1sController 
