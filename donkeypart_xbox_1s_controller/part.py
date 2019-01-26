@@ -140,16 +140,16 @@ class Xbox1sController(BluetoothDevice):
                 else:
                     btn="OTHER_BUTTON"
             elif event.type == ecodes.EV_ABS:                
-                if event.code==1:
+                if event.code==0:
                     btn="LS_X"
                     val = val / float(self.joystick_max_value)
-                elif event.code==0:
+                elif event.code==1:
                     btn="LS_Y"
                     val = val / float(self.joystick_max_value)
-                elif event.code==4:
+                elif event.code==3:
                     btn="RS_X"
                     val = val / float(self.joystick_max_value)
-                elif event.code==3:
+                elif event.code==4:
                     btn="RS_Y"
                     val = val / float(self.joystick_max_value)
                 elif event.code==2:
