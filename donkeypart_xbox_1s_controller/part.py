@@ -268,15 +268,15 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def toggle_recording(self, val):
-        if val == 589826:
-            self.recording = next(self.recording_toggle)
-            #print("recording_toggle: %s" % self.recording)
+        #if val == 589826:
+        self.recording = next(self.recording_toggle)
+        print("recording_toggle: %s" % self.recording)
         return
 
     def toggle_drive_mode(self, val):
-        if val == 589825:
-            self.drive_mode = next(self.drive_mode_toggle)
-            #print("drive_mode: %s" % self.drive_mode_toggle)
+        #if val == 589825:
+        self.drive_mode = next(self.drive_mode_toggle)
+        print("drive_mode: %s" % self.drive_mode_toggle)
         return
 
     def increment_throttle_scale(self, val):
