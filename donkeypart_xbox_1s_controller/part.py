@@ -48,7 +48,7 @@ class Xbox1sController(BluetoothDevice):
     Generator of cordinates of a bouncing moving square for simulations.
     """
 
-    def __init__(self, event_input_device=None, config_path=None, device_search_term=None, verbose=False):
+    def __init__(self, event_input_device=None, config_path=None, device_search_term="xbox", verbose=False):
 
 
         self.verbose = verbose
