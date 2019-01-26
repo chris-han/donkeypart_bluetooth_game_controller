@@ -32,62 +32,47 @@ trust 8C:CD:E8:AB:32:DE
 
 5. Run the part script to see if it works. You should see all the button values printed as you press them. Like this.
 ```bash
-python ./donkeypart_bluetooth_game_controller/donkeypart_bluetooth_game_controller/part.py
+python ./donkeypart_xbox_1s_controller/donkeypart_xbox_1s_controller/part.py log
 
-
-LEFT_STICK_Y 0.00234375
-LEFT_STICK_Y 0.0015625
-LEFT_STICK_Y 0.00078125
-A 1
-A 0
-Y 1
-Y 0
-X 1
-X 0
-```
-
+            'LS_X': self.update_angle,
+            'RT': self.update_throttle, 
+            'LT': self.update_throttle,
+            'B': self.toggle_recording,
+            'A': self.toggle_drive_mode,
+            'X': self.reset,            
+            'RB': self.increment_throttle_scale, 
+            'LB': self.decrement_throttle_scale,
 
 6. Assuming you can see the button outputs, you can now plug this in as your donkeycar controller in
-the manage.py script...
+the manage.py (donkey2.py in the template fodler) script...
 ```python
-from donkeypart_bluetooth_game_controller import BluetoothGameController
+from donkeypart_xbox_1s_controller import Xbox1sController 
 
 # then replace your current controller with...
-ctl = BluetoothGameController()
+if use_joystick or cfg.USE_JOYSTICK_AS_DEFAULT: 
+print("use xbox controller") 
+ctr = Xbox1sController(device_search_term="xbox") 
+else: 
+# This web controller will create a web server that is capable 
+# of managing steering, throttle, and modes, and more. 
+ctr = LocalWebController(use_chaos=use_chaos) 
+
 
 ```
-## Add a new type of bluetooth controller.
-If you don't have a different type of controller these same instructions should work but the button mappings will be different.
+## modify the __maim__ method with --js
+if __name__ == '__main__':
+    args = docopt(__doc__)
+    cfg = dk.load_config()
 
-1. Use the this same script to show the live output of your controller...
-```bash
-python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py log
-```
+    if args['drive']:
+        drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
 
-2. Copy the [WiiU config](https://github.com/autorope/donkeypart_bluetooth_game_controller/blob/master/donkeyblue/part.py#L86) file and update it with your controllers values.
-
-3. Now you can use your game controller with these new button mappings like this:
-```python
-from donkeypart_bluetooth_game_controller import BluetoothGameController
-ctl = BluetoothGameController(config=/path/to/your/config/file)
-```
-4. Make a pull request with your button mappings so other people can use it.
 
 
 # Tested Controllers
 
-## Works
-* Wii U Pro Controller by Nintendo
+## Test Drive with Xbox Controller
+cd ~/mycar
+python manage.py drive --js
 
-
-## Kind of Works (Not Recommended)
-* Wii U Pro Controller by SIBIONO  - This controller seems laggy give the refresh rate from the controller is half of what better controllers give. 
-
-
-
-## Test a New Controller
-Run the profile script to see the number of events per second you recieve from the controller. Then make a pull request 
-to update this document to help others.
-```
-python ./donkeypart_bluetooth_game_controller/donkeyblue/part.py log
 ```
