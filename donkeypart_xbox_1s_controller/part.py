@@ -89,11 +89,11 @@ class Xbox1sController(BluetoothDevice):
             'LEFT_STICK_Y': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'PAD_UP': self.increment_throttle_scale,
-            'PAD_DOWN': self.decrement_throttle_scale,
+            #'PAD_UP': self.increment_throttle_scale,
+            #'PAD_DOWN': self.decrement_throttle_scale,
             #for xbox controller
-            'RT': self.increment_throttle_scale, 
-            'LT': self.decrement_throttle_scale,
+            'RB': self.increment_throttle_scale, 
+            'LB': self.decrement_throttle_scale,
         }
 
     def _get_default_config_path(self):
@@ -111,6 +111,8 @@ class Xbox1sController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
+            if self.verbose == True:
+                print("raw event: {}".format(event))            
             #print ("{} : {}".format("event.type", event.type))
             #events from xbox controller keys are under EV_MSC
             if event.type == ecodes.EV_MSC:
@@ -151,8 +153,8 @@ class Xbox1sController(BluetoothDevice):
         if func is not None:
             func(val)
 
-        if self.verbose == True:
-            print("button: {}, value:{}".format(btn, val))
+        #if self.verbose == True:
+        #    print("button: {}, value:{}".format(btn, val))
 
     def update(self):
         while True:
