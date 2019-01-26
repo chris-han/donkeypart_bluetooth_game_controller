@@ -60,7 +60,7 @@ class Xbox1sController(BluetoothDevice):
 
         self.throttle_scale = 1.0
         self.throttle_scale_increment = .05
-        self.y_axis_direction = -1  # pushing stick forward gives negative values
+        #self.y_axis_direction = -1  # pushing stick forward gives negative values
 
         self.drive_mode_toggle = cycle(['user', 'local_angle', 'local'])
         self.drive_mode = next(self.drive_mode_toggle)
@@ -86,8 +86,9 @@ class Xbox1sController(BluetoothDevice):
             self.device = event_input_device
 
         self.func_map = {
-            'LEFT_STICK_X': self.update_angle,
-            'LEFT_STICK_Y': self.update_throttle,
+            'LS_X': self.update_angle,
+            'RT': self.update_throttle, #forward
+            'LT': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
             #'PAD_UP': self.increment_throttle_scale,
@@ -249,7 +250,7 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def update_throttle(self, val):
-        self.throttle = val * self.throttle_scale * self.y_axis_direction
+        self.throttle = val * self.throttle_scale# * self.y_axis_direction
         return
 
     def toggle_recording(self, val):
