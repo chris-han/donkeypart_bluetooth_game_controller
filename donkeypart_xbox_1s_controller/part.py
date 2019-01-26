@@ -129,12 +129,8 @@ class Xbox1sController(BluetoothDevice):
                 
 
             #events from xbox controller keys are under EV_MSC
-            if active_button != None: 
-                if active_button == 317:
-                    btn="LB"
-                elif active_button == 318:
-                    btn="RB"
-                elif active_button == 304:
+            if active_button != None:
+                if active_button == 304:
                     btn="A"
                 elif active_button == 305:
                     btn="B"
@@ -142,12 +138,16 @@ class Xbox1sController(BluetoothDevice):
                     btn="X"
                 elif active_button == 308:
                     btn="Y"
+                elif active_button == 310:
+                    btn="LB"
+                elif active_button == 311:
+                    btn="RB"
                 elif active_button == 314:
-                    btn="SELECT"
+                    btn="MODE"                    
                 elif active_button == 315:
-                    btn="START"
+                    btn="SELECT"
                 elif active_button == 316:
-                    btn="MODE"
+                    btn="START"
                 else:
                     btn="OTHER_BUTTON"
             elif event.type == ecodes.EV_ABS:                
@@ -187,6 +187,10 @@ class Xbox1sController(BluetoothDevice):
                     btn="OTHER_ANALOG"
             else:
                 btn="UNKNOWN"
+
+            if self.verbose == True:
+                print("button: {}".format(btn))          
+
             return btn, val
         except OSError as e:
             print('OSError: Likely lost connection with controller. Trying to reconnect now. Error: {}'.format(e))
