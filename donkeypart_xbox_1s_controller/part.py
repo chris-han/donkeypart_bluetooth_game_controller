@@ -72,7 +72,7 @@ class Xbox1sController(BluetoothDevice):
             config_path = self._get_default_config_path()
         self.config = self._load_config(config_path)
 
-        self.btn_map = self.config.get('button_map')
+        #self.btn_map = self.config.get('button_map')
         self.joystick_max_value = self.config.get('joystick_max_value', 32767)
         self.trigger_max_value = self.config.get('trigger_max_value', 1023)
 
@@ -137,7 +137,7 @@ class Xbox1sController(BluetoothDevice):
                 elif event.value == 786980:
                     btn="VIEW"
                 else:
-                    btn="OTHER"
+                    btn="OTHER_BUTTON"
             elif event.type == ecodes.EV_ABS:                
                 if event.code==1:
                     btn="LS_X"
@@ -167,7 +167,9 @@ class Xbox1sController(BluetoothDevice):
                         btn="PAD_LEFT"
                     elif event.value==1: 
                         btn="PAD_RIGHT"
-                                           
+                else:
+                    btn="OTHER_ANALOG"
+
             if self.verbose == True:
                 print("button: {} ".format(btn))  
 
