@@ -113,11 +113,14 @@ class Xbox1sController(BluetoothDevice):
         """
         try:
             event = next(self.device.read_loop())
+            active_button = self.device.active_keys()[0]            
+
             if self.verbose == True:
-                print("event typ: {} ;raw event: {}".format(event.type, event))   
-                print("key: {}; active keys: {}".format(categorize(event),self.device.active_keys()))          
+                #print("event type: {} ;raw event: {}".format(event.type, event))   
+                print("key: {}; active keys: {}; main key: {}".format(categorize(event),self.device.active_keys(),active_button))          
 
             val = event.value
+
 
             #if event.type == ecodes.EV_KEY:
              
