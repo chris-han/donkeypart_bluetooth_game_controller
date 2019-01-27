@@ -48,7 +48,7 @@ class Xbox1sController(BluetoothDevice):
     Generator of cordinates of a bouncing moving square for simulations.
     """
 
-    def __init__(self, event_input_device=None, config_path=None, device_search_term="xbox", verbose=False):
+    def __init__(self, event_input_device=None, device_search_term="xbox", verbose=False):
 
 
         self.verbose = verbose
@@ -68,16 +68,12 @@ class Xbox1sController(BluetoothDevice):
         self.recording_toggle = cycle([True, False])
         self.recording = next(self.recording_toggle)
 
-        if config_path is None:
-            config_path = self._get_default_config_path()
-        self.config = self._load_config(config_path)
 
-        #self.btn_map = self.config.get('button_map')
-        self.joystick_max_value = self.config.get('joystick_max_value', 32767)
-        self.trigger_max_value = self.config.get('trigger_max_value', 1023)
+        self.joystick_max_value = 32767
+        self.trigger_max_value = 1023
 
         # search term used to find the event stream input (/dev/input/...)
-        self.device_search_term = device_search_term or self.config.get('device_search_term', 1280)
+        self.device_search_term = "xbox"
 
         if event_input_device is None:
             self.load_device(self.device_search_term)
@@ -94,15 +90,6 @@ class Xbox1sController(BluetoothDevice):
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
         }
-
-    def _get_default_config_path(self):
-        #return os.path.join(os.path.dirname(__file__), 'wiiu_config.yml')
-        return os.path.join(os.path.dirname(__file__), 'xbox1s_config.yml')
-
-    def _load_config(self, config_path):
-        with open(config_path, 'r') as f:
-            config = yaml.load(f)
-        return config
 
     def read_loop(self):
         """
