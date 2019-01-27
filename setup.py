@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-setup(name='donkeypart_xbox_1s_controller',
+setup(name='donkeypart_xbox_one_s_controller',
       version='0.1',
-      description='xbox 1s controller part for donkeycar.',
+      description='xbox one s controller part for donkeycar.',
       long_description='none',
       long_description_content_type="text/markdown",
-      url='https://github.com/chris-han/donkeypart_xbox_1s_controller',
+      url='https://github.com/chris-han/donkeypart_xbox_one_s_controller',
       author='Chris Han',
       license='MIT',
       install_requires=['evdev', 'pyyaml'],
