@@ -79,10 +79,8 @@ if __name__ == '__main__':
 ```
 
 
-# Tested Controllers
-
 ## Test Drive with Xbox Controller
-
+```bash
 python ~/mtcar/manage.py drive --js
 
 ```
