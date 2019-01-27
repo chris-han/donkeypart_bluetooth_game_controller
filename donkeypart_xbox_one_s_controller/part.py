@@ -60,7 +60,7 @@ class Xbox1sController(BluetoothDevice):
 
         self.throttle_scale = 1.0
         self.throttle_scale_increment = .05
-        #self.y_axis_direction = 0  # change this by tigger L/R
+        self.y_axis_direction = -1 #forward
 
         self.drive_mode_toggle = cycle(['user', 'local_angle', 'local'])
         self.drive_mode = next(self.drive_mode_toggle)
@@ -87,11 +87,10 @@ class Xbox1sController(BluetoothDevice):
 
         self.func_map = {
             'LS_X': self.update_angle,
-            'RT': self.update_throttle, #forward
-            'LT': self.update_throttle,
-            'B': self.toggle_recording,
+            'LS_Y': self.update_throttle, 
+            'X': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'X': self.reset,            
+            'B': self.emergency_break,            
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
         }
@@ -262,7 +261,7 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def update_throttle(self, val):
-        self.throttle = val * self.throttle_scale #* self.y_axis_direction
+        self.throttle = val * self.throttle_scale * self.y_axis_direction
         return
 
     def toggle_recording(self, val):
@@ -277,9 +276,11 @@ class Xbox1sController(BluetoothDevice):
         #print("drive_mode: %s" % self.drive_mode_toggle)
         return
 
-    def reset(self, val):
-        self.update_throttle(0)
+    def emergency_break(self, val):
         self.update_angle(0)
+        self.update_throttle(1)
+        self.update_throttle(0)
+
         return        
 
     def increment_throttle_scale(self, val):
