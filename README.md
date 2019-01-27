@@ -1,5 +1,5 @@
 
-# Xbox 1s Controller
+# Xbox One S Controller
 This is a library to connect a [Xbox One S wireless/bluetooth controller](https://www.xbox.com/en-US/xbox-one/accessories/controllers/blue-wireless-controller) to your donkeycar.
  
  >> See the bottom of the page for tested controllers and brands. Beware of knockoffs!
