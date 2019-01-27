@@ -14,7 +14,7 @@ https://github.com/atar-axis/xpadneo
 If you have trouble to connect but able to pair, make sure restart the controller after pairing, then try to connect. 
 
 ```bash
-pip install https://github.com/chris-han/donkeypart_xbox_one_s_controller.git
+pip install https://github.com/chris-han/donkeypart_xbox_one_s_controller
 ```
 
 
