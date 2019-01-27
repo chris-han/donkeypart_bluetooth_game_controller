@@ -37,8 +37,9 @@ trust 8C:CD:E8:AB:32:DE
 
 5. Run the part script to see if it works. You should see all the button values printed as you press them.
 ```bash
-python ./donkeypart_xbox_one_s_controller/donkeypart_xbox_one_s_controller/part.py log
 
+python ./donkeypart_xbox_one_s_controller/donkeypart_xbox_one_s_controller/part.py log
+```
 The mappings:
 
             'LS_X': self.update_angle,
@@ -51,8 +52,10 @@ The mappings:
             'LB': self.decrement_throttle_scale,
 
 6. You can now plug this in as your donkeycar controller in
-the manage.py (donkey2.py in the template fodler) script...
+the manage.py (donkey2.py in the template fodler) script
+
 ```python
+
 from donkeypart_xbox_one_s_controller import Xbox1sController 
 
 # then replace your current controller with...
@@ -63,17 +66,17 @@ else:
 # This web controller will create a web server that is capable 
 # of managing steering, throttle, and modes, and more. 
 ctr = LocalWebController(use_chaos=use_chaos) 
-
-
 ```
+
 ## modify the __maim__ method with --js
+```python
 if __name__ == '__main__':
     args = docopt(__doc__)
     cfg = dk.load_config()
 
     if args['drive']:
         drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
-
+```
 
 
 # Tested Controllers
