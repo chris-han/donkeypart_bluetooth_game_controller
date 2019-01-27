@@ -37,7 +37,7 @@ trust 8C:CD:E8:AB:32:DE
 
 5. Run the part script to see if it works. You should see all the button values printed as you press them.
 ```bash
-python ./donkeypart_xbox_1s_controller/donkeypart_xbox_1s_controller/part.py log
+python ./donkeypart_xbox_one_s_controller/donkeypart_xbox_one_s_controller/part.py log
 
 The mappings:
 
@@ -53,7 +53,7 @@ The mappings:
 6. You can now plug this in as your donkeycar controller in
 the manage.py (donkey2.py in the template fodler) script...
 ```python
-from donkeypart_xbox_1s_controller import Xbox1sController 
+from donkeypart_xbox_one_s_controller import Xbox1sController 
 
 # then replace your current controller with...
 if use_joystick or cfg.USE_JOYSTICK_AS_DEFAULT: 
