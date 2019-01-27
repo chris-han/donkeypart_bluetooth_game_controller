@@ -43,11 +43,10 @@ python ./donkeypart_xbox_one_s_controller/donkeypart_xbox_one_s_controller/part.
 The mappings:
 
             'LS_X': self.update_angle,
-            'RT': self.update_throttle, #forward
-            'LT': self.update_throttle,
-            'B': self.toggle_recording,
+            'LS_Y': self.update_throttle, 
+            'X': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'X': self.reset,            
+            'B': self.emergency_break,            
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
 
