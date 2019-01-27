@@ -1,6 +1,6 @@
 
 # Xbox 1s Controller
-This is a library to connect a [Xbox 1s wireless/bluetooth controller](https://www.xbox.com/en-US/xbox-one/accessories/controllers/blue-wireless-controller) to your donkeycar.
+This is a library to connect a [Xbox One S wireless/bluetooth controller](https://www.xbox.com/en-US/xbox-one/accessories/controllers/blue-wireless-controller) to your donkeycar.
  
  >> See the bottom of the page for tested controllers and brands. Beware of knockoffs!
 
@@ -14,7 +14,7 @@ https://github.com/atar-axis/xpadneo
 If you have trouble to connect but able to pair, make sure restart the controller after pairing, then try to connect. 
 
 ```bash
-pip install https://github.com/chris-han/donkeypart_xbox_1s_controller.git
+pip install https://github.com/chris-han/donkeypart_xbox_one_s_controller.git
 ```
 
 
