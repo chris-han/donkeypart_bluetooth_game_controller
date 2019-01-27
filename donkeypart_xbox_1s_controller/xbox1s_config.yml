@@ -1,24 +1,11 @@
 
 device_search_term: 'xbox'
-
-
-#Map the button codes to the button names
-button_map:
-
-  0: 'LEFT_STICK_X'
-  1: 'LEFT_STICK_Y'
-  3: 'RIGHT_STICK_X'
-  4: 'RIGHT_STICK_Y'
-  2: 'LT'
-  5: 'RT'
-
-# 'B': self.toggle_recording,
-# 'A': self.toggle_drive_mode,
-# 'PAD_UP': self.increment_throttle_scale,
-# 'PAD_DOWN': self.decrement_throttle_scale,
-
 joystick_max_value: 32767
 trigger_max_value: 1023
+
+#Map the button codes to the button names in code instead of here due to driver limitations
+
+
 
 
 
