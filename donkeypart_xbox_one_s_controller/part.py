@@ -83,10 +83,11 @@ class Xbox1sController(BluetoothDevice):
 
         self.func_map = {
             'LS_X': self.update_angle,
-            'LS_Y': self.update_throttle, 
-            'X': self.toggle_recording,
+            'RT': self.update_throttle, #forward
+            'LT': self.update_throttle,
+            'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'B': self.emergency_break,            
+            'X': self.reset,            
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
         }
@@ -248,7 +249,7 @@ class Xbox1sController(BluetoothDevice):
         return
 
     def update_throttle(self, val):
-        self.throttle = val * self.throttle_scale * self.y_axis_direction
+        self.throttle = val * self.throttle_scale #* self.y_axis_direction
         return
 
     def toggle_recording(self, val):
