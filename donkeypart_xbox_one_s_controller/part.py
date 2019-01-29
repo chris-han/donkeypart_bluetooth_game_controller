@@ -87,7 +87,7 @@ class Xbox1sController(BluetoothDevice):
             'LT': self.update_throttle,
             'B': self.toggle_recording,
             'A': self.toggle_drive_mode,
-            'X': self.reset,            
+            'B': self.emergency_break,         
             'RB': self.increment_throttle_scale, 
             'LB': self.decrement_throttle_scale,
         }
